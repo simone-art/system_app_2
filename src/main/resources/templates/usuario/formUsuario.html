@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>System App</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Cadastro de Usuarios</h1>
+<h3><a href="/usuarios" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Lista de Usuários</a></h3>
+
+<th:block th:include="usuario/mensagemValidacaoUsuario"></th:block>
+
+<form class="container" method="post">
+    Nome: <input type="text" value="" name="nome"/>
+    <div class="row">
+        <div class="input-field col s3">
+            Sobrenome: <input type="text" value="" name="sobrenome"/>
+        </div>
+        <div class="input-field col s3">
+            Email: <input type="text" value="" name="email"/>
+        </div>
+        <div class="input-field col s3">
+            Senha: <input type="password" value="" name="senha"/>
+        </div>
+        <div class="input-field col s3">
+            ConfirmarSenha: <input type="password" value="" name="Confirmar senha"/>
+        </div>
+    </div>
+    <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+</form>
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+</html>

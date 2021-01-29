@@ -110,12 +110,11 @@ public class ConteudoController {
         return mv;
     }
 
-
-//    @GetMapping("/deletar/{codigo}")
-//    public String deletarConteudo(@PathVariable long codigo){
-//        Conteudo conteudo = cr.findByCodigo(codigo);
-//        cr.delete(conteudo);
-//        return "redirect:/usuarios";
-//    }
+    @GetMapping("/deletarConteudo/{codigo}")
+    public String deletarConteudo(@PathVariable long codigo){
+        Conteudo conteudo = cr.findByCodigo(codigo);
+        cr.delete(conteudo);
+        return "redirect:/conteudos";
+    }
 
 }

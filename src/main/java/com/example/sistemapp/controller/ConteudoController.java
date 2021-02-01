@@ -31,7 +31,7 @@ public class ConteudoController {
     @RequestMapping(value = "/conteudo", method = RequestMethod.POST)
     public String textarea(Conteudo conteudo) {
         cr.save(conteudo);
-        //contadorPalavras(conteudo.getMaterial());
+        contadorPalavras(conteudo.getMaterial());
         //JOptionPane.showMessageDialog(null, "A aquantidade de palavras é: " + conteudo.getMaterial());
         //contadorCaracteres(conteudo.getMaterial());
 
@@ -39,22 +39,23 @@ public class ConteudoController {
 
     }
 
-//    public static int contadorPalavras (String Material){
-//        Scanner lerPalavras = new Scanner(System.in);
-//        lerPalavras.next().trim();
-    //Material = Material.trim();
-//        int quantPalavras = 0 ;
-//        if (Material.isEmpty()) {
-//            quantPalavras = 0;
-//        } else {
-//            Material.indexOf(" ");
-//            for (int x = 0; x <Material.length(); x++);{
-//                quantPalavras = Material.indexOf(" ", quantPalavras + 1);
-//            }
-//        }
-//        return quantPalavras;
-//
-//    }
+    public int contadorPalavras(String Material)
+    {
+        int quantPalavras = 0;
+        if (!(" ".equals(Material.substring(0, 1))) || !(" ".equals(Material.substring(Material.length() - 1))))
+        {
+            for (int i = 0; i < Material.length(); i++)
+            {
+                if (Material.charAt(i) == ' ')
+                {
+                    quantPalavras++;
+                }
+            }
+            quantPalavras = quantPalavras + 1;
+        }
+  //       cr.save(quantPalavras);
+        return quantPalavras;
+    }
 
     //public static int contadorCaracteres(String Material) {
     //String[] arr;

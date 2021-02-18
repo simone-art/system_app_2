@@ -30,7 +30,7 @@
     <tbody>
     <tr class="row" th:each="conteudo : ${conteudos}">
         <td> <a th:href="@{conteudo/dadosConteudo/{codigo}(codigo = ${conteudo.codigo})}"><span th:text="${conteudo.material}"></span></a></td>
-        <td th:text="${conteudo.quantPalavras}"></td>
+        <td th:text="${conteudo.quantPalavras}" name="quantPalavras"></td>
         <td th:text="${conteudo.quantCaracteres}"></td>
         <td>
             <a th:href="@{editarConteudo/{codigo}(codigo=${conteudo.codigo})}">

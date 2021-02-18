@@ -1,6 +1,5 @@
 package com.example.sistemapp.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,16 +8,27 @@ import java.io.Serializable;
 public class Conteudo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
-    @GenericGenerator(name="native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     private long codigo;
 
     @Column
-    private String Material;
+    private String material;
     @Column
-    private int quantPalavras;
+    private Integer quantPalavras;
+
     @Column
-    private int quantCaracteres;
+    private Integer quantCaracteres;
+
+
+    public Conteudo() {
+    }
+
+    public Conteudo(long codigo, String material, Integer quantPalavras, Integer quantCaracteres) {
+        this.codigo = codigo;
+        this.material = material;
+        this.quantPalavras = quantPalavras;
+        this.quantCaracteres = quantCaracteres;
+    }
 
     public long getCodigo() {
         return codigo;
@@ -29,26 +39,50 @@ public class Conteudo implements Serializable {
     }
 
     public String getMaterial() {
-        return Material;
+        return material;
     }
 
     public void setMaterial(String material) {
-        Material = material;
+        this.material = material;
     }
 
-    public int getQuantPalavras() {
-        return quantPalavras;
+    public Integer getQuantPalavras() {
+        return this.quantPalavras;
     }
 
-    public void setQuantPalavras(int quantPalavras) {
-        quantPalavras = quantPalavras;
+    public void setQuantPalavras(Integer quantPalavras) {
+        this.quantPalavras = quantPalavras;
     }
 
-    public int getQuantCaracteres() {
+    public Integer getQuantCaracteres() {
         return quantCaracteres;
     }
 
-    public void set(int quantCaracteres) {
-        quantCaracteres = quantCaracteres;
+    public void setQuantCaracteres(int quantCaracteres) {
+        this.quantCaracteres = quantCaracteres;
     }
-}
+
+
+  //  public Integer getQuantPalavras() {
+        //return quantPalavras;
+    //}
+
+//    public  Integer salvar()
+//    {
+//        try
+//        {
+//            quantPalavras = getQuantPalavras();
+//            return quantPalavras;
+//
+//        }
+//        catch (Exception error)
+//        {
+//            throw error;
+//
+//        }
+   }
+
+
+
+
+

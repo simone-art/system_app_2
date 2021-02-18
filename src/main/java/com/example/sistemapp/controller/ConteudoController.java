@@ -1,21 +1,12 @@
 package com.example.sistemapp.controller;
 
 import com.example.sistemapp.entity.Conteudo;
-import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.ConteudoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.w3c.dom.Document;
 
-import javax.print.Doc;
-import javax.swing.*;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 @Controller
 public class ConteudoController {
@@ -23,54 +14,36 @@ public class ConteudoController {
     @Autowired
     private ConteudoRepository cr;
 
+
     @RequestMapping(value = "/conteudo", method = RequestMethod.GET)
     public String textarea() {
         return "/conteudo/conteudoTextarea";
     }
 
     @RequestMapping(value = "/conteudo", method = RequestMethod.POST)
-    public String textarea(Conteudo conteudo) {
-        cr.save(conteudo);
-        contadorPalavras(conteudo.getMaterial());
-        //JOptionPane.showMessageDialog(null, "A aquantidade de palavras é: " + conteudo.getMaterial());
-        //contadorCaracteres(conteudo.getMaterial());
-
+    public String textarea(String material) {
+        contarPalavras(material);
         return "redirect:/conteudo";
 
     }
 
-    public int contadorPalavras(String Material)
-    {
-        int quantPalavras = 0;
-        if (!(" ".equals(Material.substring(0, 1))) || !(" ".equals(Material.substring(Material.length() - 1))))
-        {
-            for (int i = 0; i < Material.length(); i++)
-            {
-                if (Material.charAt(i) == ' ')
-                {
+    public Integer contarPalavras(String material) {
+        Integer quantPalavras = 0;
+        if (!(" ".equals(material.substring(0, 1))) || !(" ".equals(material.substring(material.length() - 1)))) {
+            for (int i = 0; i < material.length(); i++) {
+                if (material.charAt(i) == ' ') {
                     quantPalavras++;
                 }
             }
             quantPalavras = quantPalavras + 1;
         }
-  //       cr.save(quantPalavras);
-        return quantPalavras;
+        System.out.println("Palavras: " + quantPalavras);
+        Conteudo conteudo = new Conteudo();
+        conteudo.setMaterial(material);
+        conteudo.setQuantPalavras(quantPalavras);
+        cr.save(conteudo);
+       return quantPalavras;
     }
-
-    //public static int contadorCaracteres(String Material) {
-    //String[] arr;
-    //Scanner sc = new Scanner(System.in);
-    //String material = sc.nextLine();
-    //int palavras = 0;
-    //int palavras = palavras.length();
-    //arr = new String[palavras];
-    //for (int i = 0; i <palavras; i++) {
-    //char a = palavras.charAt(pa);
-    //arr[i] = String.valueOf(a);
-    //}
-    //return palavras;
-    //}
-
 
     @RequestMapping("/conteudos")
     public ModelAndView ListaConteudos() {
@@ -79,16 +52,6 @@ public class ConteudoController {
         cmv.addObject("conteudos", Conteudos);
         return cmv;
     }
-
-
-//    @RequestMapping("conteudo/dadosConteudo/{codigo}")
-//    public ModelAndView dadosConteudo(@PathVariable("codigo") long codigo) {
-//        Conteudo conteudo = cr.findByCodigo(codigo);
-//        ModelAndView cmv = new ModelAndView("conteudo/dadosConteudo");
-//        cmv.addObject("conteudo", conteudo);
-//        return cmv;
-//
-//    }
 
     //Não se pode ter duas url com a mesma direção/ elas devem ser únicas
     // Antes no GetMapping estava ("/editar/{codigo}") e isso estava iguazinho

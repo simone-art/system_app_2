@@ -69,10 +69,24 @@ public class ConteudoController {
     @PostMapping("/editarConteudo")
     public ModelAndView editar(Conteudo conteudo){
         ModelAndView mv = new ModelAndView();
-        cr.save(conteudo);
+        contarPalavras(conteudo.getMaterial());
         mv.setViewName("redirect:/conteudos");
         return mv;
     }
+
+//    @PostMapping("/editarConteudo")
+//    public String salvarEditar(Conteudo quantPalavras){
+//        cr.save(quantPalavras);
+//        return "redirect:/conteudos";
+//    }
+
+//    @PostMapping("/editarConteudo")
+//    public ModelAndView editar(Conteudo conteudo){
+//        ModelAndView mv = new ModelAndView();
+//        cr.save(conteudo);
+//        mv.setViewName("redirect:/conteudos");
+//        return mv;
+//    }
 
     @GetMapping("/deletarConteudo/{codigo}")
     public String deletarConteudo(@PathVariable long codigo){

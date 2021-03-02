@@ -82,4 +82,19 @@ public class ConteudoController {
         return "redirect:/conteudos";
     }
 
+    /**
+     * Métodos para fazer o upload da imagem na database
+     */
+
+    @RequestMapping(value = "/conteudo", method = RequestMethod.GET)
+    public String input() {
+        return "/conteudo/conteudoTextarea";
+    }
+
+    @RequestMapping(value = "/conteudo", method = RequestMethod.POST)
+    public String input(String material) {
+        return "redirect:/conteudo";
+
+    }
+
 }

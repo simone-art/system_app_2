@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>System App</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Lista de Imagens</h1>
+<h3><a href="/imagens" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Imagens</a></h3>
+<br>
+
+<button class="btn waves-effect waves-light" type="submit" name="action">Novo Upload
+    <a href="/imagem"><i class="material-icons right">send</i></a>
+</button>
+
+<table class="container">
+    <thead>
+    <tr>
+        <th>CreateDate</th>
+        <th>Imagem</th>
+        <th>NomeDoarquivo</th>
+        <th>UpdateDate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row" th:each="data : ${datas}">
+        <td th:text="${data.createDate}" name="createDate"></td>
+        <td th:text="${data.imagem}"></td>
+        <td th:text="${data.nomeArquivo}"></td>
+        <td th:text="${data.updateDate}"></td>
+        <td>
+            <a th:href="@{editarData/{codigo}(codigo=${data.codigo})}">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Editar
+                    <i class="material-icons right">send</i>
+                </button></a>
+        </td>
+        <td>
+            <a th:href="@{deletarData/{codigo}(codigo=${data.codigo})}">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+                    <i class="material-icons right">send</i>
+                </button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>

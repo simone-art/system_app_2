@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name= "files")
+@Table(name= "data")
 public class Data implements Serializable {
 
     @Id
@@ -34,7 +34,7 @@ public class Data implements Serializable {
         this.imagem = imagem;
     }
 
-    public Data(String dataname, String contentType, byte[] bytes) {
+    public Data() {
     }
 
 

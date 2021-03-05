@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name= "files")
-public class Files implements Serializable {
+public class Data implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -26,7 +26,7 @@ public class Files implements Serializable {
 
     private byte[] imagem;
 
-    public Files(long codigo, LocalDateTime createDate, LocalDateTime updateDate, String nomeArquivo, byte[] imagem) {
+    public Data(long codigo, LocalDateTime createDate, LocalDateTime updateDate, String nomeArquivo, byte[] imagem) {
         this.codigo = codigo;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -34,8 +34,9 @@ public class Files implements Serializable {
         this.imagem = imagem;
     }
 
-    public Files() {
+    public Data(String dataname, String contentType, byte[] bytes) {
     }
+
 
     public long getCodigo() {
         return codigo;

@@ -1,11 +1,11 @@
 package com.example.sistemapp.repository;
 
-import com.example.sistemapp.entity.Files;
+import com.example.sistemapp.entity.Data;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface FilesRepository extends CrudRepository<Files, String> {
-    Files findByCodigo(long codigo);
+public interface DataRepository extends CrudRepository<Data, String> {
+    Data findByCodigo(long codigo);
 }

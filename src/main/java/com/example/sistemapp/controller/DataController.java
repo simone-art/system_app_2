@@ -3,6 +3,7 @@ package com.example.sistemapp.controller;
 
 import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Data;
+import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.DataRepository;
 import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +59,12 @@ public class DataController {
     }
 
 
-    @RequestMapping("/imagens")
+    @RequestMapping("/datas")
     public ModelAndView ListaData() {
         ModelAndView cmv = new ModelAndView("data/listarData");
         Iterable<Data> Datas = dataRepository.findAll();
-        cmv.addObject("data", Datas);
+        cmv.addObject("datas", Datas);
         return cmv;
     }
+
 }

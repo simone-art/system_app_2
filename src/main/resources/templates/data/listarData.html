@@ -22,18 +22,17 @@
 <table class="container">
     <thead>
     <tr>
-        <th>CreateDate</th>
-        <th>Imagem</th>
+        <th>Conteúdo</th>
         <th>NomeDoarquivo</th>
-        <th>UpdateDate</th>
+        <th>UploadTime</th>
     </tr>
     </thead>
     <tbody>
-    <tr class="row" th:each="data : ${datas}">
-        <td th:text="${data.createDate}" name="createDate"></td>
-        <td th:text="${data.imagem}"></td>
+    <tr class="row" th:each="data : ${imagens}">
+        <td> <a th:href="@{data/listarData/{codigo}(codigo = ${data.codigo})}"><span th:text="${data.nomeArquivo}"></span></a></td>
+        <td th:text="${data.conteudo}" name="conteudo"></td>
         <td th:text="${data.nomeArquivo}"></td>
-        <td th:text="${data.updateDate}"></td>
+        <td th:text="${data.uploadTime}"></td>
         <td>
             <a th:href="@{editarData/{codigo}(codigo=${data.codigo})}">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Editar

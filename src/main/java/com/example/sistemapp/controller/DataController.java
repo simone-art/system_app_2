@@ -1,11 +1,15 @@
 package com.example.sistemapp.controller;
 
+
 import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Data;
 import com.example.sistemapp.repository.DataRepository;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +21,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Controller
 //@EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})
@@ -34,28 +41,22 @@ public class DataController {
         return "/data/dataImagem";
     }
 
+    @PostMapping("/imagem")
+    public String uploadFiles(@RequestParam("conteudo")  MultipartFile multipartFile, RedirectAttributes redirectAttributes ) throws IOException {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        Data conteudo = new Data();
+        conteudo.setNomeArquivo(fileName);
+        conteudo.setUploadTime(new Date());
+        conteudo.setConteudo(multipartFile.getBytes());
 
-    @RequestMapping(value = "/imagem", method = RequestMethod.POST)
-    public String upload(Model model, MultipartFile[] files) {
-        StringBuilder filesNames = new StringBuilder();
-        if (files != null) {
-            for (MultipartFile file : files) {
-                Path fileNameAndPath = Paths.get(uploadFolder, file.getOriginalFilename());
-                filesNames.append(file.getOriginalFilename());
-                try {
-                    byte[] bytes = file.getBytes();
-                    Path path = Paths.get(uploadFolder + file.getOriginalFilename());
-                    Files.write(fileNameAndPath, file.getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                model.addAttribute("mensagem", "Upload feito com sucesso" + filesNames.toString());
+        dataRepository.save(conteudo);
 
-            }
-        }
+        redirectAttributes.addFlashAttribute("message", "Upload feito com sucesso");
         System.out.println("Funcionou");
         return "data/dataImagem";
+
     }
+
 
     @RequestMapping("/imagens")
     public ModelAndView ListaData() {

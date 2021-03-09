@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name= "data")
@@ -15,28 +16,22 @@ public class Data implements Serializable {
     private long codigo;
 
     @Column
-    @JsonFormat(pattern = "dd-MM-yyyy HH: mm: ss")
-    private LocalDateTime createDate;
-
+    private Date uploadTime;
     @Column
-    @JsonFormat(pattern = "dd-MM-yyyy HH: mm: ss")
-    private LocalDateTime updateDate;
+     String nomeArquivo;
 
-    private String nomeArquivo;
+    @Column (length = 5000)
+    private byte[] conteudo;
 
-    private byte[] imagem;
-
-    public Data(long codigo, LocalDateTime createDate, LocalDateTime updateDate, String nomeArquivo, byte[] imagem) {
+    public Data(long codigo, Date uploadTime, String nomeArquivo, byte[] conteudo) {
         this.codigo = codigo;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.uploadTime = uploadTime;
         this.nomeArquivo = nomeArquivo;
-        this.imagem = imagem;
+        this.conteudo = conteudo;
     }
 
     public Data() {
     }
-
 
     public long getCodigo() {
         return codigo;
@@ -46,20 +41,12 @@ public class Data implements Serializable {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
+    public Date getUploadTime() {
+        return uploadTime;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
+    public void setUploadTime(Date uploadTime) {
+        this.uploadTime = uploadTime;
     }
 
     public String getNomeArquivo() {
@@ -70,24 +57,11 @@ public class Data implements Serializable {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public byte[] getImagem() {
-        return imagem;
+    public byte[] getConteudo() {
+        return conteudo;
     }
 
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
-    }
-
-    // @PrePersist salva o momento exato do file
-    @PrePersist
-    protected void onCreate(){
-        this.createDate = LocalDateTime.now();
-    }
-
-    //@PreUpdate atualiza a hora que está sendo persistido o objeto no banco
-    //De dados. Neste caso, quando for atualizado
-    @PreUpdate
-    protected void onUpdate(){
-        this.updateDate = LocalDateTime.now();
+    public void setConteudo(byte[] conteudo) {
+        this.conteudo = conteudo;
     }
 }

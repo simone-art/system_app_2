@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name= "data")
@@ -63,5 +65,20 @@ public class Data implements Serializable {
 
     public void setConteudo(byte[] conteudo) {
         this.conteudo = conteudo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Data data = (Data) o;
+        return codigo == data.codigo && Objects.equals(uploadTime, data.uploadTime) && Objects.equals(nomeArquivo, data.nomeArquivo) && Arrays.equals(conteudo, data.conteudo);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(codigo, uploadTime, nomeArquivo);
+        result = 31 * result + Arrays.hashCode(conteudo);
+        return result;
     }
 }

@@ -3,6 +3,7 @@ package com.example.sistemapp.controller;
 import com.example.sistemapp.dto.UsuarioDto;
 import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Usuario;
+import com.example.sistemapp.repository.UsuarioDtoRepository;
 import com.example.sistemapp.repository.UsuarioRepository;
 import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioDto usuarioDto;
+
+    @Autowired
+    private UsuarioDtoRepository usuarioDtoRepository;
 
     @RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.GET)
     public String form() {
@@ -58,8 +62,8 @@ public class UsuarioController {
 
     @RequestMapping("/usuarios")
     public ModelAndView ListaUsuarios(){
-        ModelAndView mv = new ModelAndView("index");
-        //ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
+        //ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
         Iterable<Usuario>Usuarios = ur.findAll();
         mv.addObject("usuarios", Usuarios);
         return mv;

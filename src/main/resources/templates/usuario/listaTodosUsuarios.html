@@ -18,26 +18,12 @@
     <tr>
         <th> Nome</th>
         <th> Sobrenome</th>
-        <th> Accões</th>
     </tr>
     </thead>
     <tbody>
     <tr class="row" th:each="usuario : ${usuarios}">
         <td> <a th:href="@{/dadosUsuario/{codigo}(codigo = ${usuario.codigo})}"><span th:text="${usuario.nome}"></span></a></td>
         <td th:text="${usuario.sobrenome}"></td>
-        <td>
-            <a th:href="@{editar/{codigo}(codigo=${usuario.codigo})}">
-                <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Editar
-                    <i class="material-icons right">crop_rotate</i>
-                </button></a>
-        </td>
-        <td>
-            <a th:href="@{deletar/{codigo}(codigo=${usuario.codigo})}">
-                <button class="btn waves-effect waves-light btn-small" type="submit" name="_method" >Deletar
-                    <i class="material-icons right">delete_sweep</i>
-                </button></a>
-        </td>
-
     </tr>
     </tbody>
 </table>

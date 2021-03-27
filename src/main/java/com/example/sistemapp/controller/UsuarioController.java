@@ -5,6 +5,7 @@ import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.UsuarioRepository;
 import org.dom4j.rule.Mode;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository ur;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private UsuarioDto usuarioDto;
@@ -54,7 +58,8 @@ public class UsuarioController {
 
     @RequestMapping("/usuarios")
     public ModelAndView ListaUsuarios(){
-        ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
+        ModelAndView mv = new ModelAndView("index");
+        //ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
         Iterable<Usuario>Usuarios = ur.findAll();
         mv.addObject("usuarios", Usuarios);
         return mv;

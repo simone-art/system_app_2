@@ -28,8 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row" th:each="data : ${datas}">
-        <td> <a th:href="@{data/listarData/{codigo}(codigo = ${data.codigo})}"><span th:text="${data.nomeArquivo}"></span></a></td>
+    <tr class="row" th:each="data : ${datas}"><td> <a th:href="@{data/listarData/{codigo}(codigo = ${data.codigo})}"><span th:text="${data.nomeArquivo}"></span></a></td>
         <td th:text="${data.conteudo}"></td>
         <td th:text="${data.nomeArquivo}"></td>
         <td th:text="${data.uploadTime}"></td>

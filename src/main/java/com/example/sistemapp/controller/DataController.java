@@ -1,14 +1,10 @@
 package com.example.sistemapp.controller;
 
 
-import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Data;
-import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.DataRepository;
-import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

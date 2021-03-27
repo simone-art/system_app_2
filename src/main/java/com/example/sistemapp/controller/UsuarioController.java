@@ -1,5 +1,6 @@
 package com.example.sistemapp.controller;
 
+import com.example.sistemapp.dto.UsuarioDto;
 import com.example.sistemapp.entity.Conteudo;
 import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.UsuarioRepository;
@@ -21,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository ur;
+
+    @Autowired
+    private UsuarioDto usuarioDto;
 
     @RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.GET)
     public String form() {
@@ -50,13 +54,13 @@ public class UsuarioController {
 
     @RequestMapping("/usuarios")
     public ModelAndView ListaUsuarios(){
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
         Iterable<Usuario>Usuarios = ur.findAll();
         mv.addObject("usuarios", Usuarios);
         return mv;
     }
 
-    @RequestMapping("usuario/dadosUsuario/{codigo}")
+    @RequestMapping("dadosUsuario/{codigo}")
     public ModelAndView dadosUsuario(@PathVariable("codigo") long codigo) {
         Usuario usuario = ur.findByCodigo(codigo);
         ModelAndView mv = new ModelAndView("usuario/dadosUsuario");

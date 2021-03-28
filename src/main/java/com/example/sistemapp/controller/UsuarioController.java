@@ -1,11 +1,11 @@
 package com.example.sistemapp.controller;
 
+import com.example.sistemapp.service.UsuarioDtoService;
 import com.example.sistemapp.dto.UsuarioDto;
 
 import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.UsuarioRepository;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -26,6 +24,13 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository ur;
+
+    @Autowired
+    private UsuarioDtoService usuarioDtoService;
+
+    @Autowired
+    private UsuarioDto usuarioDto;
+
 
 
     @RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.GET)
@@ -48,6 +53,11 @@ public class UsuarioController {
     }
 
     @RequestMapping("/usuarios")
+    @ResponseBody
+    public List<UsuarioDto> getAllUsuarios() {
+        List <UsuarioDto> usuarioDtos = usuarioDtoService.getAllUsuarios();
+        return usuarioDtos;
+    }
     public ModelAndView ListaUsuarios() {
         //ModelAndView mv = new ModelAndView("index");
         ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
@@ -56,6 +66,7 @@ public class UsuarioController {
         return mv;
     }
 
+
     @RequestMapping("dadosUsuario/{codigo}")
     public ModelAndView dadosUsuario(@PathVariable("codigo") long codigo) {
         Usuario usuario = ur.findByCodigo(codigo);
@@ -63,6 +74,7 @@ public class UsuarioController {
         mv.addObject("usuario", usuario);
         return mv;
     }
+
 
 //    Este código get e post pra editar e salvar o dado novo na database,
 //    para poder funcionar, o nome de ambos métodos deve ser um verbo o uma

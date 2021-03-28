@@ -52,6 +52,8 @@ public class Usuario implements Serializable {
         this.confirmaSenha = confirmaSenha;
     }
 
+  
+
     public long getCodigo() {
         return codigo;
     }
@@ -65,7 +67,7 @@ public class Usuario implements Serializable {
     }
 
     public void setNome(String nome) {
-        nome = nome;
+        this.nome = nome;
     }
 
     public String getSobrenome() {
@@ -73,7 +75,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSobrenome(String sobrenome) {
-        sobrenome = sobrenome;
+        this.sobrenome = sobrenome;
     }
 
     public String getEmail() {
@@ -83,7 +85,6 @@ public class Usuario implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getSenha() {
         return senha;
@@ -100,5 +101,4 @@ public class Usuario implements Serializable {
     public void setConfirmaSenha(String confirmaSenha) {
         this.confirmaSenha = confirmaSenha;
     }
-
 }

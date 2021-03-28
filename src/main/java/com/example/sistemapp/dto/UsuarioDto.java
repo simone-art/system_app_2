@@ -2,6 +2,8 @@ package com.example.sistemapp.dto;
 
 
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Component
@@ -38,7 +40,7 @@ public class UsuarioDto implements Serializable {
     }
 
     public void setNome(String nome) {
-        nome = nome;
+        this.nome = nome;
     }
 
     public String getSobrenome() {
@@ -46,7 +48,7 @@ public class UsuarioDto implements Serializable {
     }
 
     public void setSobrenome(String sobrenome) {
-        sobrenome = sobrenome;
+        this.sobrenome = sobrenome;
     }
 
 

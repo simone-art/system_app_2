@@ -1,13 +1,16 @@
 package com.example.sistemapp.dto;
 
+
+import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
+@Component
 public class UsuarioDto implements Serializable {
 
     private static  final long serialVersionUID = 1L;
     private long codigo;
-    private String Nome;
-    private String Sobrenome;
+    private String nome;
+    private String sobrenome;
 
     /*
     Criação Constructores, Getters and Setters
@@ -15,8 +18,8 @@ public class UsuarioDto implements Serializable {
 
     public UsuarioDto(long codigo, String nome, String sobrenome) {
         this.codigo = codigo;
-        Nome = nome;
-        Sobrenome = sobrenome;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
     }
 
     public UsuarioDto() {
@@ -31,18 +34,20 @@ public class UsuarioDto implements Serializable {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        nome = nome;
     }
 
     public String getSobrenome() {
-        return Sobrenome;
+        return sobrenome;
     }
 
     public void setSobrenome(String sobrenome) {
-        Sobrenome = sobrenome;
+        sobrenome = sobrenome;
     }
+
+
 }

@@ -22,15 +22,4 @@ public class UsuarioDtoConverter {
         return usuario.stream().map(x -> entityToDto(x)).collect(Collectors.toList());
     }
 
-    public Usuario dtoToEntity(UsuarioDto dto){
-        Usuario usuario = new Usuario();
-        usuario.setCodigo(dto.getCodigo());
-        usuario.setNome(dto.getNome());
-        usuario.setSobrenome(dto.getSobrenome());
-        return usuario;
-    }
-
-    public List<Usuario> dtoToEntity(List<UsuarioDto> dto){
-        return dto.stream().map(x -> dtoToEntity(x)).collect(Collectors.toList());
-    }
 }

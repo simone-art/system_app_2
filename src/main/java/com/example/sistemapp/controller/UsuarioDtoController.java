@@ -3,7 +3,6 @@ package com.example.sistemapp.controller;
 import com.example.sistemapp.converter.UsuarioDtoConverter;
 import com.example.sistemapp.dto.UsuarioDto;
 import com.example.sistemapp.entity.Usuario;
-import com.example.sistemapp.repository.UsuarioDtoRepository;
 import com.example.sistemapp.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ import java.util.List;
 public class UsuarioDtoController {
 
     @Autowired
-    private  UsuarioDtoRepository usuarioDtoRepository;
-
-    @Autowired
     private UsuarioRepository ur;
 
     @Autowired
@@ -29,27 +25,24 @@ public class UsuarioDtoController {
     @Autowired
     private UsuarioDtoConverter converter;
 
-//   @GetMapping("/findAll")
-//    public List<UsuarioDto> findAll(Usuario usuario){
-//       Iterable<Usuario> Usuarios = ur.findAll();
-//       return converter.entityToDto(usuario);
-//
-//   }
+   @GetMapping("/findAll")
+    public UsuarioDto findAll(Usuario usuario){
+       Iterable<Usuario> Usuarios = ur.findAll();
+       return converter.entityToDto(usuario);
 
+   }
 
-//    @GetMapping("/find/{codigo}")
-//    public UsuarioDto findbyId(@PathVariable(value = "id") long codigo){
-//        ur.findByCodigo(codigo);
-//        return converter.entityToDto("id");
-//
-//    }
-
-    @PostMapping("/save")
-    public UsuarioDto save(@RequestBody UsuarioDto dto){
-        Usuario usuario = converter.dtoToEntity(dto);
-        usuario = ur.save(usuario);
+    @GetMapping("/find/{codigo}")
+    public UsuarioDto findbyId(@PathVariable(value = "id") long codigo){
+        Usuario usuario = ur.findByCodigo(codigo);
         return converter.entityToDto(usuario);
 
+    }
+
+    @PostMapping("/save")
+    public UsuarioDto save(Usuario usuario){
+        usuario = ur.save(usuario);
+        return converter.entityToDto(usuario);
     }
 
 }

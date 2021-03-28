@@ -52,14 +52,14 @@ public class UsuarioController {
 
     }
 
-    @RequestMapping("/usuarios")
-    @ResponseBody
+    //Método que lista os atributos do usuários definidos no DTO
     public List<UsuarioDto> getAllUsuarios() {
         List <UsuarioDto> usuarioDtos = usuarioDtoService.getAllUsuarios();
+        listaUsuarios();
         return usuarioDtos;
     }
-    public ModelAndView ListaUsuarios() {
-        //ModelAndView mv = new ModelAndView("index");
+    @RequestMapping("/usuarios")
+    public ModelAndView listaUsuarios() {
         ModelAndView mv = new ModelAndView("usuario/listaTodosUsuarios");
         Iterable<Usuario> Usuarios = ur.findAll();
         mv.addObject("usuarios", Usuarios);

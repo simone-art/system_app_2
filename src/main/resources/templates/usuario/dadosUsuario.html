@@ -9,26 +9,45 @@
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href="data:,">
-
 </head>
 <body>
+<h1>Lista de Usuarios</h1>
+<h3><a href="/usuarios" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Usuários</a></h3>
+<table class="container">
+    <thead>
+    <tr>
+        <th> Nome</th>
+        <th> Sobrenome</th>
+        <th> Email</th>
+        <th> Senha</th>
+        <th>Accões</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row" th:each="usuario : ${usuario}">
+        <td> <a th:href="@{/dadosUsuario/{codigo}(codigo = ${usuario.codigo})}"><span th:text="${usuario.nome}"></span></a></td>
+        <td th:text="${usuario.sobrenome}"></td>
+        <td th:text="${usuario.email}"></td>
+        <td th:text="${usuario.senha}"></td>
+        <td>
+            <a th:href="@{editar/{codigo}(codigo=${usuario.codigo})}">
+                <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Editar
+                    <i class="material-icons right">crop_rotate</i>
+                </button></a>
+        </td>
+        <td>
+            <a th:href="@{deletar/{codigo}(codigo=${usuario.codigo})}">
+                <button class="btn waves-effect waves-light btn-small" type="submit" name="_method" >Deletar
+                    <i class="material-icons right">delete_sweep</i>
+                </button></a>
+        </td>
 
-<h1>Usuario</h1>
-<h3><a href="/usuarios" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Lista de Usuarios</a></h3>
-
-<div class="container">
-    <div class="row" th:each="usuario: ${usuario}">
-        <p th:text="${usuario.nome}" ></p>
-        <p th:text="${usuario.sobrenome}"></p>
-        <p th:text="${usuario.email}"></p>
-        <p th:text="${usuario.senha}"></p>
-    </div>
-</div>
+    </tr>
+    </tbody>
+</table>
 
 
 <!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-
+<script type="text/javascript" src="../../js/materialize.min.js"></script>
 </body>
 </html>

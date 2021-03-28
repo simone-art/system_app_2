@@ -1,4 +1,4 @@
-package com.example.sistemapp;
+package com.example.sistemapp.core;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

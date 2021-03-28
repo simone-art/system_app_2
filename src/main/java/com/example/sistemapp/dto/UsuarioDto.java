@@ -1,17 +1,26 @@
 package com.example.sistemapp.dto;
 
-import org.springframework.context.annotation.Configuration;
+import java.io.Serializable;
 
-@Configuration
-public class UsuarioDto {
+public class UsuarioDto implements Serializable {
 
+    private static  final long serialVersionUID = 1L;
     private long codigo;
     private String Nome;
     private String Sobrenome;
 
     /*
-    Criação Getters and Setters
+    Criação Constructores, Getters and Setters
      */
+
+    public UsuarioDto(long codigo, String nome, String sobrenome) {
+        this.codigo = codigo;
+        Nome = nome;
+        Sobrenome = sobrenome;
+    }
+
+    public UsuarioDto() {
+    }
 
     public long getCodigo() {
         return codigo;

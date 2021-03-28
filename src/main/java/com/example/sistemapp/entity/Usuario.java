@@ -20,12 +20,12 @@ public class Usuario implements Serializable {
     @Column
     @NotBlank
     @Size(min= 3, max = 40, message = "O nome deve contar no mínimo 3 caracteres")
-    private String Nome;
+    private String nome;
 
     @Column
     @NotBlank
     @Size(min= 3, max = 40, message = "O nome deve contar no mínimo 3 caracteres")
-    private String Sobrenome;
+    private String sobrenome;
 
     @Column(unique = true)
     @NotBlank
@@ -40,6 +40,18 @@ public class Usuario implements Serializable {
     @Transient
     private String confirmaSenha;
 
+    public Usuario() {
+    }
+
+    public Usuario(long codigo, @NotBlank @Size(min = 3, max = 40, message = "O nome deve contar no mínimo 3 caracteres") String nome, @NotBlank @Size(min = 3, max = 40, message = "O nome deve contar no mínimo 3 caracteres") String sobrenome, @NotBlank @Email String email, @NotBlank @Size(min = 3, max = 40, message = "A senha deve contar no mínimo  com 6 caracteres, uma letra em maiúscula e caracteres especiais") String senha, String confirmaSenha) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+    }
+
     public long getCodigo() {
         return codigo;
     }
@@ -49,19 +61,19 @@ public class Usuario implements Serializable {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        nome = nome;
     }
 
     public String getSobrenome() {
-        return Sobrenome;
+        return sobrenome;
     }
 
     public void setSobrenome(String sobrenome) {
-        Sobrenome = sobrenome;
+        sobrenome = sobrenome;
     }
 
     public String getEmail() {

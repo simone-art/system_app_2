@@ -27,12 +27,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository ur;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
-    private UsuarioDto usuarioDto;
-
 
     @RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.GET)
     public String form() {
@@ -62,26 +56,13 @@ public class UsuarioController {
         return mv;
     }
 
-//    @RequestMapping("dadosUsuario/{codigo}")
-//    public ModelAndView dadosUsuario(@PathVariable("codigo") long codigo) {
-//        Usuario usuario = ur.findByCodigo(codigo);
-//        ModelAndView mv = new ModelAndView("usuario/dadosUsuario");
-//        mv.addObject("usuario", usuario);
-//        return mv;
-//    }
-
     @RequestMapping("dadosUsuario/{codigo}")
-    public List<UsuarioDto> buscaPeloId(@PathVariable("codigo") long codigo) {
-            Iterable<Usuario> Usuarios = ur.findAll();
-            List<UsuarioDto> dtos = new ArrayList<>();
-            ModelMapper modelMapper = new ModelMapper();
-            for (Usuario usuario : Usuarios) {
-                dtos.add(modelMapper.map(usuario, UsuarioDto.class));
-            }
-            return dtos;
+    public ModelAndView dadosUsuario(@PathVariable("codigo") long codigo) {
+        Usuario usuario = ur.findByCodigo(codigo);
+        ModelAndView mv = new ModelAndView("usuario/dadosUsuario");
+        mv.addObject("usuario", usuario);
+        return mv;
     }
-
-
 
 //    Este código get e post pra editar e salvar o dado novo na database,
 //    para poder funcionar, o nome de ambos métodos deve ser um verbo o uma

@@ -72,7 +72,7 @@ public class UsuarioController {
 //    para poder funcionar, o nome de ambos métodos deve ser um verbo o uma
 //    palavra curta. Com palavras compostas ele não funciona!
 
-  @GetMapping ("/editar/{codigo}")
+  @GetMapping ("dadosUsuario/editar/{codigo}")
     public ModelAndView editar(@PathVariable long codigo){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("usuario/editarUsuario");

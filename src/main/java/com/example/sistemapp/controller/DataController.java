@@ -2,14 +2,12 @@ package com.example.sistemapp.controller;
 
 
 import com.example.sistemapp.entity.Data;
+import com.example.sistemapp.entity.Usuario;
 import com.example.sistemapp.repository.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -61,6 +59,14 @@ public class DataController {
         Iterable<Data> Datas = dataRepository.findAll();
         cmv.addObject("datas", Datas);
         return cmv;
+    }
+
+    //Método pra deletar
+    @GetMapping("/deletarData/{codigo}")
+    public String deletarData(@PathVariable long codigo){
+        Data data = dataRepository.findByCodigo(codigo);
+        dataRepository.delete(data);
+        return "redirect:/datas";
     }
 
 }
